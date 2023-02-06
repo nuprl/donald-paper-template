@@ -1,0 +1,15 @@
+{
+    "files.exclude": {
+        "**/main.aux": true,
+        "**/main.bbl": true,
+        "**/main.blg": true,
+        "**/main.fdb_latexmk": true,
+        "**/main.fls": true,
+        "**/main.log": true,
+        "**/main.out": true,
+        "**/main.pyg": true,
+        "**/main.synctex.gz": true,
+        "**/main.synctex(busy)": true,
+        "**/main.abstract.output": true,
+    }
+}

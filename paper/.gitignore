@@ -1,0 +1,6 @@
+*.pdf
+!figs_and_tables/*.pdf
+!plots/*/*.pdf
+.texpadtmp
+*.toc
+_minted-*

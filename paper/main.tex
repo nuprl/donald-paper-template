@@ -1,0 +1,115 @@
+\pdfoutput=1 % For ArXiV. This must appear in the first 2-3 lines.
+\RequirePackage{build-config}
+\newcommand{\formattype}{\formattypeIEEE} % \formattypeACM or \formattypeIEEE
+
+% cSpell:ignore Browserify maxnpm jquery dups subfigure ECDF conda
+
+\RequirePackage{ifthen}
+
+\newcommand{\formattypeACM}{formattypeACM}
+\newcommand{\formattypeIEEE}{formattypeIEEE}
+
+
+\ifisdraft
+  \ifthenelse{\equal{\formattype}{\formattypeIEEE}}{
+    \documentclass[10pt,conference]{IEEEtran}
+  } {
+    \ifisarxiv
+      \ifisanonymous
+        \documentclass[acmsmall,screen,nonacm,review,anonymous]{acmart/acmart}
+        \settopmatter{printfolios=true,printccs=false,printacmref=false}
+      \else
+        \documentclass[acmsmall,screen,nonacm,review]{acmart/acmart}
+        \settopmatter{printfolios=true,printccs=false,printacmref=false}
+      \fi
+    \else
+      \ifisanonymous
+        \documentclass[acmsmall,screen,review,anonymous]{acmart/acmart}
+        \settopmatter{printfolios=true,printccs=true,printacmref=true}
+      \else
+        \documentclass[acmsmall,screen,review]{acmart/acmart}
+        \settopmatter{printfolios=true,printccs=true,printacmref=true}
+      \fi
+    \fi
+  }
+\else
+  \ifthenelse{\equal{\formattype}{\formattypeIEEE}}{
+    \documentclass[10pt,conference]{IEEEtran}
+  } {
+    \ifisarxiv
+      \ifisanonymous
+        \documentclass[acmsmall,screen,nonacm,anonymous]{acmart/acmart}
+        \settopmatter{printfolios=true,printccs=false,printacmref=false}
+      \else
+        \documentclass[acmsmall,screen,nonacm]{acmart/acmart}
+        \settopmatter{printfolios=true,printccs=false,printacmref=false}
+      \fi
+    \else
+      \ifisanonymous
+        \documentclass[acmsmall,screen,anonymous]{acmart/acmart}
+        \settopmatter{printfolios=true,printccs=true,printacmref=true}
+      \else
+        \documentclass[acmsmall,screen]{acmart/acmart}
+        \settopmatter{printfolios=true,printccs=true,printacmref=true}
+      \fi
+    \fi
+  }
+\fi
+
+
+\ifthenelse{\equal{\formattype}{\formattypeIEEE}}{
+
+} {
+  \citestyle{acmauthoryear}
+}
+
+
+\newwrite\abstractoutput
+\immediate\openout\abstractoutput=\jobname.abstract.output
+
+\ifthenelse{\equal{\formattype}{\formattypeIEEE}}{
+  \newcommand{\makeTitleAndAbstract}{
+    \write\abstractoutput{\theAbstract}
+    \maketitle
+    \begin{abstract}
+    \theAbstract
+    \end{abstract}
+  }
+}{
+  \newcommand{\makeTitleAndAbstract}{
+    \write\abstractoutput{\theAbstract}
+    \begin{abstract}
+    \theAbstract
+    \end{abstract}
+    \maketitle
+  }
+}
+
+\usepackage{paper-specific-macros}
+\usepackage{package-config}
+
+\begin{document}
+
+\makeTitleAndAbstract
+
+
+\section{Introduction}
+\label{sec:intro}
+
+This is my intro! Do citations work? \cite{weak-links-npm}.
+
+
+
+{
+  \footnotesize
+
+  \ifthenelse{\equal{\formattype}{\formattypeIEEE}} {
+    \bibliographystyle{IEEEtran}
+  } {
+    \bibliographystyle{ACM-Reference-Format}
+  }
+
+  \bibliography{bib/venues-short,bib/main}
+}
+
+\end{document}

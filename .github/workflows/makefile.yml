@@ -1,0 +1,116 @@
+name: Typesetting CI
+
+on: push
+
+jobs:
+  typeset-conference-draft:
+    runs-on: ubuntu-latest
+    container: donaldpinckney/texlive-full:latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Clean
+      run: make clean
+    
+    - name: Build
+      run: make out/conference-draft.pdf
+
+    - name: Archive build file(s)
+      uses: actions/upload-artifact@v3
+      with:
+        name: conference-draft.pdf
+        path: out/conference-draft.pdf
+        retention-days: 5
+
+  typeset-conference-submit:
+    runs-on: ubuntu-latest
+    container: donaldpinckney/texlive-full:latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Clean
+      run: make clean
+    
+    - name: Build
+      run: make out/conference-submit.pdf
+
+    - name: Archive build file(s)
+      uses: actions/upload-artifact@v3
+      with:
+        name: conference-submit.pdf
+        path: out/conference-submit.pdf
+        retention-days: 5
+
+    # - name: Upload PDF to Backblaze B2
+    #   uses: wilsonzlin/b2-upload-action@v1.0.1
+    #   with:
+    #     bucket: arjunguha-research
+    #     uploadKey: paper-name-of-this-paper.pdf
+    #     keyId: ${{ secrets.B2_KEY_ID }}
+    #     applicationKey: ${{ secrets.B2_APP_KEY }}
+    #     file: out/conference-submit.pdf
+    #     contentType: application/pdf
+
+  typeset-conference-camera-ready:
+    runs-on: ubuntu-latest
+    container: donaldpinckney/texlive-full:latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Clean
+      run: make clean
+    
+    - name: Build
+      run: make out/conference-camera-ready.pdf
+
+    - name: Archive build file(s)
+      uses: actions/upload-artifact@v3
+      with:
+        name: conference-camera-ready.pdf
+        path: out/conference-camera-ready.pdf
+        retention-days: 5
+
+  zip-arxiv-bundle:
+    runs-on: ubuntu-latest
+    container: donaldpinckney/texlive-full:latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Clean
+      run: make clean
+    
+    - name: Build
+      run: make out/arxiv.zip
+
+    - name: Archive build file(s)
+      uses: actions/upload-artifact@v3
+      with:
+        name: arxiv-bundle
+        path: |
+          out/arxiv
+          out/arxiv.zip
+        retention-days: 5
+  
+  export-abstract:
+    runs-on: ubuntu-latest
+    container: donaldpinckney/texlive-full:latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Clean
+      run: make clean
+    
+    - name: Build
+      run: make out/abstract.md
+
+    - name: Archive build file(s)
+      uses: actions/upload-artifact@v3
+      with:
+        name: abstract.md
+        path: out/abstract.md
+        retention-days: 5
