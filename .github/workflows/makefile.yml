@@ -1,6 +1,6 @@
 name: Typesetting CI
 
-on: push
+on: [push, workflow_dispatch]
 
 jobs:
   typeset-conference-draft:
