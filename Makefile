@@ -1,6 +1,14 @@
 .PHONY: all clean .FORCE out/arxiv.pdf.noclean
 
 
+out/conference-camera-ready.pdf: .FORCE
+	mkdir -p out/
+	scripts/build_with_config.sh out/conference-camera-ready.pdf '\\newif\\ifisdraft\\isdraftfalse\n\\newif\\ifisanonymous\\isanonymousfalse\n\\newif\\ifisarxiv\\isarxivfalse'
+	cd paper/; latexmk -c; rm -f main.pdf main.abstract.output
+
+out/conference-camera-ready-embedded.pdf: out/conference-camera-ready.pdf
+	gs -q -dSAFER -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=out/conference-camera-ready-embedded.pdf -dCompatibilityLevel=1.5 -dPDFSETTINGS=/prepress out/conference-camera-ready.pdf
+
 out/conference-draft.pdf: .FORCE
 	mkdir -p out/
 	scripts/build_with_config.sh out/conference-draft.pdf '\\newif\\ifisdraft\\isdrafttrue\n\\newif\\ifisanonymous\\isanonymoustrue\n\\newif\\ifisarxiv\\isarxivfalse'
@@ -11,10 +19,6 @@ out/conference-submit.pdf: .FORCE
 	scripts/build_with_config.sh out/conference-submit.pdf '\\newif\\ifisdraft\\isdraftfalse\n\\newif\\ifisanonymous\\isanonymoustrue\n\\newif\\ifisarxiv\\isarxivfalse'
 	cd paper/; latexmk -c; rm -f main.pdf main.abstract.output
 
-out/conference-camera-ready.pdf: .FORCE
-	mkdir -p out/
-	scripts/build_with_config.sh out/conference-camera-ready.pdf '\\newif\\ifisdraft\\isdraftfalse\n\\newif\\ifisanonymous\\isanonymousfalse\n\\newif\\ifisarxiv\\isarxivfalse'
-	cd paper/; latexmk -c; rm -f main.pdf main.abstract.output
 
 
 out/arxiv.pdf.noclean: .FORCE
