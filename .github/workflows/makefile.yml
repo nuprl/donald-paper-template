@@ -72,6 +72,36 @@ jobs:
         name: conference-camera-ready.pdf
         path: out/conference-camera-ready.pdf
         retention-days: 5
+        
+  typeset-conference-camera-ready-embedded:
+    runs-on: ubuntu-latest
+    container: donaldpinckney/texlive-full:latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Clean
+      run: make clean
+    
+    - name: Build
+      run: make out/conference-camera-ready-embedded.pdf
+
+    - name: Archive build file(s)
+      uses: actions/upload-artifact@v3
+      with:
+        name: conference-camera-ready-embedded.pdf
+        path: out/conference-camera-ready-embedded.pdf
+        retention-days: 5
+        
+#     - name: Upload PDF to Backblaze B2
+#       uses: wilsonzlin/b2-upload-action@v1.0.1
+#       with:
+#         bucket: arjunguha-research
+#         uploadKey: maxnpm-submission.pdf
+#         keyId: ${{ secrets.B2_KEY_ID }}
+#         applicationKey: ${{ secrets.B2_APP_KEY }}
+#         file: out/conference-camera-ready-embedded.pdf
+#         contentType: application/pdf
 
   zip-arxiv-bundle:
     runs-on: ubuntu-latest
