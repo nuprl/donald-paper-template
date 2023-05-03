@@ -39,8 +39,8 @@
   basicstyle=\ttfamily,
   columns=fullflexible,
   comment=[l]{;},
-%  keepspaces=true,
-%  mathescape=false,
+  %  keepspaces=true,
+  %  mathescape=false,
   escapechar=@
 }
 
@@ -106,7 +106,7 @@
 
 \hypersetup{%
   bookmarksdepth = {-2},
-%	hidelinks=true,
+  %	hidelinks=true,
   pdftitle = {\theTitle},
   pdfkeywords = {},
   pdfauthor = {},
@@ -155,23 +155,25 @@
     %% Journal information
     %% Supplied to authors by publisher for camera-ready submission;
     %% use defaults for review submission.
-    \acmJournal{PACMPL}
-    \acmVolume{1}
-    \acmNumber{OOPSLA} % CONF = POPL or ICFP or OOPSLA
-    \acmArticle{1}
-    \acmYear{2022}
-    \acmMonth{1}
-    \acmDOI{} % \acmDOI{10.1145/nnnnnnn.nnnnnnn}
-    \startPage{1}
-    
+    \acmConference[ESEC/FSE 2023]{The 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering}{11 - 17 November, 2023}{San Francisco, USA}
+    % \acmJournal{PACMPL}
+    % \acmVolume{1}
+    % \acmNumber{OOPSLA} % CONF = POPL or ICFP or OOPSLA
+    % \acmArticle{1}
+    % \acmYear{2022}
+    % \acmMonth{1}
+    % \acmDOI{} % \acmDOI{10.1145/nnnnnnn.nnnnnnn}
+    % \startPage{1}
+
     %% Copyright information
     %% Supplied to authors (based on authors' rights management selection;
     %% see authors.acm.org) by publisher for camera-ready submission;
     %% use 'none' for review submission.
-    \setcopyright{acmcopyright}
-    \setcopyright{acmlicensed}
-    \setcopyright{rightsretained}
-    \copyrightyear{2018}           %% If different from \acmYear
+    \setcopyright{none}
+    % \setcopyright{acmcopyright}
+    % \setcopyright{acmlicensed}
+    % \setcopyright{rightsretained}
+    % \copyrightyear{2018}           %% If different from \acmYear
   \fi
 }
 
@@ -193,25 +195,25 @@
   \else
 
     \author{%
-      \IEEEauthorblockN{%
-        Donald Pinckney\IEEEauthorrefmark{1}, %
-        Federico Cassano\IEEEauthorrefmark{1}, %
-        Arjun Guha\IEEEauthorrefmark{1}, %
-        Jon Bell\IEEEauthorrefmark{1}, %
-        Massimiliano Culpo\IEEEauthorrefmark{2}, %
-        Todd Gamblin\IEEEauthorrefmark{3}}
-      \IEEEauthorblockA{%
-        \IEEEauthorrefmark{1}Northeastern University, Boston, MA, USA\\
-        \{\tt%
-        \href{mailto:pinckney.d@northeastern.edu}{pinckney.d}, %
-        \href{mailto:cassano.f@northeastern.edu}{cassano.f}, %
-        \href{mailto:a.guha@northeastern.edu}{a.guha}, %
-        \href{mailto:j.bell@northeastern.edu}{j.bell}%
-        \}@northeastern.edu}
-      \IEEEauthorblockA{\IEEEauthorrefmark{2}np-complete, S.r.l., Italy\\
-        {\tt\href{mailto:massimiliano.culpo@googlemail.com}{massimiliano.culpo@googlemail.com}}}
-      \IEEEauthorblockA{\IEEEauthorrefmark{3}Lawrence Livermore National Laboratory, Livermore, CA, USA\\
-        {\tt\href{mailto:tgamblin@llnl.gov}{tgamblin@llnl.gov}}}
+    \IEEEauthorblockN{%
+      Donald Pinckney\IEEEauthorrefmark{1}, %
+      Federico Cassano\IEEEauthorrefmark{1}, %
+      Arjun Guha\IEEEauthorrefmark{1}, %
+      Jon Bell\IEEEauthorrefmark{1}, %
+      Massimiliano Culpo\IEEEauthorrefmark{2}, %
+      Todd Gamblin\IEEEauthorrefmark{3}}
+    \IEEEauthorblockA{%
+      \IEEEauthorrefmark{1}Northeastern University, Boston, MA, USA\\
+      \{\tt%
+      \href{mailto:pinckney.d@northeastern.edu}{pinckney.d}, %
+      \href{mailto:cassano.f@northeastern.edu}{cassano.f}, %
+      \href{mailto:a.guha@northeastern.edu}{a.guha}, %
+      \href{mailto:j.bell@northeastern.edu}{j.bell}%
+      \}@northeastern.edu}
+    \IEEEauthorblockA{\IEEEauthorrefmark{2}np-complete, S.r.l., Italy\\
+    {\tt\href{mailto:massimiliano.culpo@googlemail.com}{massimiliano.culpo@googlemail.com}}}
+    \IEEEauthorblockA{\IEEEauthorrefmark{3}Lawrence Livermore National Laboratory, Livermore, CA, USA\\
+    {\tt\href{mailto:tgamblin@llnl.gov}{tgamblin@llnl.gov}}}
     }
 
     % \author{Donald Pinckney}
@@ -292,5 +294,5 @@
 
 
 \newcommand{\theAbstract}{
-Abstract of my paper
+  Abstract of my paper
 }

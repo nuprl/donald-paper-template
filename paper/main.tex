@@ -1,6 +1,7 @@
 \pdfoutput=1 % For ArXiV. This must appear in the first 2-3 lines.
 \RequirePackage{build-config}
-\newcommand{\formattype}{\formattypeIEEE} % \formattypeACM or \formattypeIEEE
+\newcommand{\formattype}{\formattypeACM} % \formattypeACM or \formattypeIEEE
+\newcommand{\acmType}{sigconf} % or acmsmall
 
 % cSpell:ignore Browserify maxnpm jquery dups subfigure ECDF conda
 
@@ -16,18 +17,18 @@
   } {
     \ifisarxiv
       \ifisanonymous
-        \documentclass[acmsmall,screen,nonacm,review,anonymous]{acmart/acmart}
+        \documentclass[\acmType,screen,nonacm,review,anonymous]{acmart/acmart}
         \settopmatter{printfolios=true,printccs=false,printacmref=false}
       \else
-        \documentclass[acmsmall,screen,nonacm,review]{acmart/acmart}
+        \documentclass[\acmType,screen,nonacm,review]{acmart/acmart}
         \settopmatter{printfolios=true,printccs=false,printacmref=false}
       \fi
     \else
       \ifisanonymous
-        \documentclass[acmsmall,screen,review,anonymous]{acmart/acmart}
+        \documentclass[\acmType,screen,review,anonymous]{acmart/acmart}
         \settopmatter{printfolios=true,printccs=true,printacmref=true}
       \else
-        \documentclass[acmsmall,screen,review]{acmart/acmart}
+        \documentclass[\acmType,screen,review]{acmart/acmart}
         \settopmatter{printfolios=true,printccs=true,printacmref=true}
       \fi
     \fi
@@ -38,18 +39,18 @@
   } {
     \ifisarxiv
       \ifisanonymous
-        \documentclass[acmsmall,screen,nonacm,anonymous]{acmart/acmart}
+        \documentclass[\acmType,screen,nonacm,anonymous]{acmart/acmart}
         \settopmatter{printfolios=true,printccs=false,printacmref=false}
       \else
-        \documentclass[acmsmall,screen,nonacm]{acmart/acmart}
+        \documentclass[\acmType,screen,nonacm]{acmart/acmart}
         \settopmatter{printfolios=true,printccs=false,printacmref=false}
       \fi
     \else
       \ifisanonymous
-        \documentclass[acmsmall,screen,anonymous]{acmart/acmart}
+        \documentclass[\acmType,screen,anonymous]{acmart/acmart}
         \settopmatter{printfolios=true,printccs=true,printacmref=true}
       \else
-        \documentclass[acmsmall,screen]{acmart/acmart}
+        \documentclass[\acmType,screen]{acmart/acmart}
         \settopmatter{printfolios=true,printccs=true,printacmref=true}
       \fi
     \fi
@@ -101,15 +102,15 @@ This is my intro! Do citations work? \cite{weak-links-npm}.
 
 
 {
-  \footnotesize
+\footnotesize
 
-  \ifthenelse{\equal{\formattype}{\formattypeIEEE}} {
-    \bibliographystyle{IEEEtran}
-  } {
-    \bibliographystyle{ACM-Reference-Format}
-  }
+\ifthenelse{\equal{\formattype}{\formattypeIEEE}} {
+  \bibliographystyle{IEEEtran}
+} {
+  \bibliographystyle{ACM-Reference-Format}
+}
 
-  \bibliography{bib/venues-short,bib/main}
+\bibliography{bib/venues-short,bib/main}
 }
 
 \end{document}
